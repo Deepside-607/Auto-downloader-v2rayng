@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دانلود v2ray - آخرین نسخه برای همه پلتفرم‌ها</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Vazir, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            font-family: Vazir, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+        
+        /* Cards */
+        .app-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-align: center;
+        }
+        
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .app-platform {
+            color: #64748b;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        /* Info Rows */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        
+        .info-row:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .info-value {
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .version-badge {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+        
+        /* Buttons */
+        .download-btn {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+        
+        .download-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(37, 99, 235, 0.4);
+            filter: brightness(1.05);
+        }
+        
+        .download-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.6;
+        }
+        
+        /* Feature Pills */
+        .feature-pill {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #374151;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0.25rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-pill:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Loading State */
+        .loading-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f1f5f9;
+        }
+        
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Error State */
+        .error-card {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .dark-theme .error-card {
+            background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+            border-color: #dc2626;
+            color: #fecaca;
+        }
+        
+        /* Guide Section */
+        .guide-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 4rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f1f5f9;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #1e293b;
+        }
+        
+        .guide-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .guide-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .guide-icon {
+            font-size: 2.5rem;
+            margin-left: 1rem;
+        }
+        
+        .guide-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .guide-step {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin-bottom: 0.5rem;
+        }
+        
+        .guide-step:hover {
+            background: #ffffff;
+        }
+        
+        .step-check {
+            color: #10b981;
+            margin-left: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        
+        .step-text {
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        /* Typewriter Animation */
+        .typewriter-text {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cursor {
+            animation: blink 1s infinite;
+            color: #2563eb;
+            font-weight: bold;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Platform Preview Grid */
+        .platform-preview {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        
+        .platform-preview:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e1;
+        }
+        
+        .platform-preview-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .platform-preview-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .platform-preview-subtitle {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #64748b;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .theme-toggle:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .theme-icon {
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        /* Dark Theme Styles */
+        .dark-theme {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f1f5f9;
+        }
+        
+        .dark-theme .header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-bottom-color: #475569;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-theme .header h1 {
+            color: #ffffff !important;
+        }
+        
+        .dark-theme .hero-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        
+        .dark-theme .hero-section::before {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 40%, rgba(34, 197, 94, 0.06) 0%, transparent 50%);
+        }
+        
+        .dark-theme .hero-title {
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-theme .hero-subtitle {
+            color: #cbd5e1;
+        }
+        
+        .dark-theme .app-card {
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            border-color: #64748b;
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.4), 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-theme .app-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 10px 20px -5px rgba(0, 0, 0, 0.4);
+            transform: translateY(-12px);
+        }
+        
+        .dark-theme .app-title {
+            color: #ffffff;
+        }
+        
+        .dark-theme .app-platform {
+            color: #cbd5e1;
+        }
+        
+        .dark-theme .info-row {
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            border-color: #64748b;
+        }
+        
+        .dark-theme .info-row:hover {
+            background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+            border-color: #94a3b8;
+        }
+        
+        .dark-theme .info-label {
+            color: #f8fafc;
+        }
+        
+        .dark-theme .info-value {
+            color: #e2e8f0;
+        }
+        
+        .dark-theme .feature-pill {
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            border-color: #64748b;
+            color: #f8fafc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark-theme .feature-pill:hover {
+            background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+            border-color: #94a3b8;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-theme .loading-card {
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            border-color: #64748b;
+            color: #f8fafc;
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark-theme .loading-card .text-xl {
+            color: #ffffff !important;
+        }
+        
+        .dark-theme .loading-card .text-gray-500 {
+            color: #cbd5e1 !important;
+        }
+        
+        .dark-theme .loading-card .text-gray-700 {
+            color: #e2e8f0 !important;
+        }
+        
+        .dark-theme .loading-spinner {
+            border-color: #475569;
+            border-top-color: #10b981;
+        }
+        
+        .dark-theme .platform-preview {
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            border-color: #64748b;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark-theme .platform-preview:hover {
+            border-color: #94a3b8;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+        }
+        
+        .dark-theme .platform-preview-title {
+            color: #ffffff;
+        }
+        
+        .dark-theme .platform-preview-subtitle {
+            color: #cbd5e1;
+        }
+        
+        .dark-theme .guide-section {
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            border-color: #64748b;
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark-theme .section-title {
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-theme .guide-card {
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            border-color: #64748b;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark-theme .guide-header {
+            border-bottom-color: #94a3b8;
+        }
+        
+        .dark-theme .guide-title {
+            color: #ffffff;
+        }
+        
+        .dark-theme .guide-step:hover {
+            background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+        }
+        
+        .dark-theme .step-text {
+            color: #f8fafc;
+        }
+        
+        .dark-theme .step-check {
+            color: #22c55e;
+        }
+        
+        .dark-theme .footer {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-top-color: #475569;
+            color: #cbd5e1;
+        }
+        
+        .dark-theme .footer .text-lg {
+            color: #ffffff !important;
+        }
+        
+        .dark-theme .footer .text-sm {
+            color: #cbd5e1 !important;
+        }
+        
+        .dark-theme .footer .font-semibold {
+            color: #e2e8f0 !important;
+        }
+        
+        .dark-theme .theme-toggle {
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            border-color: #64748b;
+            color: #f8fafc;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark-theme .theme-toggle:hover {
+            background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+            border-color: #94a3b8;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Additional text color fixes for dark theme */
+        .dark-theme .text-gray-800 {
+            color: #ffffff !important;
+        }
+        
+        .dark-theme .text-gray-700 {
+            color: #e2e8f0 !important;
+        }
+        
+        .dark-theme .text-gray-500 {
+            color: #cbd5e1 !important;
+        }
+        
+        .dark-theme .text-xl {
+            color: #ffffff !important;
+        }
+        
+        .dark-theme .text-lg {
+            color: #ffffff !important;
+        }
+        
+        .dark-theme .text-sm {
+            color: #cbd5e1 !important;
+        }
+        
+        .dark-theme .font-semibold {
+            color: #e2e8f0 !important;
+        }
+        
+
+        
+
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-card {
+                padding: 1.5rem;
+            }
+            
+            .guide-section {
+                padding: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+            
+            .theme-toggle span:last-child {
+                display: none;
+            }
+            
+            .theme-toggle {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header py-4">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-gray-800">🚀 دانلود V2Ray</h1>
+                
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="theme-toggle">
+                    <span class="theme-icon" id="theme-icon">☀️</span>
+                    <span id="theme-text">حالت روشن</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-20 relative">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="hero-title">
+                دانلود جدیدترین نسخه V2Ray
+            </h1>
+            <p class="hero-subtitle typewriter-text">
+                <span id="typewriter-text"></span><span class="cursor">|</span>
+            </p>
+            
+            <div class="flex flex-wrap justify-center items-center mb-12">
+                <span class="feature-pill">🔄 بروزرسانی خودکار</span>
+                <span class="feature-pill">🌐 مستقیم از GitHub</span>
+                <span class="feature-pill">💻 پشتیبانی کامل</span>
+                <span class="feature-pill">⚡ دانلود سریع</span>
+                <span class="feature-pill">🛡️ کاملاً امن</span>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="platform-preview">
+                    <div class="platform-preview-icon">🤖</div>
+                    <div class="platform-preview-title">اندروید</div>
+                    <div class="platform-preview-subtitle">v2rayNG</div>
+                </div>
+                <div class="platform-preview">
+                    <div class="platform-preview-icon">🪟</div>
+                    <div class="platform-preview-title">ویندوز</div>
+                    <div class="platform-preview-subtitle">v2rayN</div>
+                </div>
+                <div class="platform-preview">
+                    <div class="platform-preview-icon">🐧</div>
+                    <div class="platform-preview-title">لینوکس</div>
+                    <div class="platform-preview-subtitle">v2rayN</div>
+                </div>
+                <div class="platform-preview">
+                    <div class="platform-preview-icon">🍎</div>
+                    <div class="platform-preview-title">مک</div>
+                    <div class="platform-preview-subtitle">v2rayN</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Loading State -->
+        <div id="loading" class="text-center">
+            <div class="loading-card inline-block">
+                <div class="loading-spinner"></div>
+                <div class="text-xl font-semibold text-gray-700 mb-2">دریافت اطلاعات...</div>
+                <div class="text-gray-500">چند لحظه صبر کنید</div>
+            </div>
+        </div>
+
+        <!-- Apps Grid -->
+        <div id="apps-grid" class="grid lg:grid-cols-2 xl:grid-cols-4 gap-8 max-w-7xl mx-auto hidden">
+            <!-- v2rayNG for Android -->
+            <div class="app-card">
+                <div class="platform-icon">🤖</div>
+                <h2 class="app-title">v2rayNG</h2>
+                <p class="app-platform">اندروید</p>
+                
+                <div id="android-info" class="space-y-3 mb-6">
+                    <div class="info-row">
+                        <span class="info-label">نسخه:</span>
+                        <span id="android-version" class="version-badge">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">تاریخ:</span>
+                        <span id="android-date" class="info-value">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">حجم:</span>
+                        <span id="android-size" class="info-value">-</span>
+                    </div>
+                </div>
+                
+                <button id="android-download" class="download-btn" disabled>
+                    ⬇️ دانلود APK
+                </button>
+            </div>
+
+            <!-- v2rayN for Windows -->
+            <div class="app-card">
+                <div class="platform-icon">🪟</div>
+                <h2 class="app-title">v2rayN</h2>
+                <p class="app-platform">ویندوز</p>
+                
+                <div id="windows-info" class="space-y-3 mb-6">
+                    <div class="info-row">
+                        <span class="info-label">نسخه:</span>
+                        <span id="windows-version" class="version-badge">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">تاریخ:</span>
+                        <span id="windows-date" class="info-value">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">حجم:</span>
+                        <span id="windows-size" class="info-value">-</span>
+                    </div>
+                </div>
+                
+                <button id="windows-download" class="download-btn" disabled>
+                    ⬇️ دانلود ZIP
+                </button>
+            </div>
+
+            <!-- v2rayN for Linux -->
+            <div class="app-card">
+                <div class="platform-icon">🐧</div>
+                <h2 class="app-title">v2rayN</h2>
+                <p class="app-platform">لینوکس</p>
+                
+                <div id="linux-info" class="space-y-3 mb-6">
+                    <div class="info-row">
+                        <span class="info-label">نسخه:</span>
+                        <span id="linux-version" class="version-badge">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">تاریخ:</span>
+                        <span id="linux-date" class="info-value">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">حجم:</span>
+                        <span id="linux-size" class="info-value">-</span>
+                    </div>
+                </div>
+                
+                <button id="linux-download" class="download-btn" disabled>
+                    ⬇️ دانلود ZIP
+                </button>
+            </div>
+
+            <!-- v2rayN for macOS -->
+            <div class="app-card">
+                <div class="platform-icon">🍎</div>
+                <h2 class="app-title">v2rayN</h2>
+                <p class="app-platform">مک او اس</p>
+                
+                <div id="macos-info" class="space-y-3 mb-6">
+                    <div class="info-row">
+                        <span class="info-label">نسخه:</span>
+                        <span id="macos-version" class="version-badge">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">تاریخ:</span>
+                        <span id="macos-date" class="info-value">-</span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="info-label">حجم:</span>
+                        <span id="macos-size" class="info-value">-</span>
+                    </div>
+                </div>
+                
+                <button id="macos-download" class="download-btn" disabled>
+                    ⬇️ دانلود ZIP
+                </button>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="text-center hidden">
+            <div class="error-card inline-block">
+                <div class="text-4xl mb-4">⚠️</div>
+                <div class="text-lg font-semibold mb-2">خطا در دریافت اطلاعات</div>
+                <div>لطفاً صفحه را مجدداً بارگذاری کنید</div>
+            </div>
+        </div>
+
+        <!-- Guide Section -->
+        <div class="guide-section">
+            <h3 class="section-title">📖 راهنمای نصب</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="guide-card">
+                    <div class="guide-header">
+                        <div class="guide-icon">🤖</div>
+                        <h4 class="guide-title">اندروید</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">دانلود فایل APK</span>
+                        </div>
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">فعال‌سازی منابع نامعلوم</span>
+                        </div>
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">نصب و اجرا</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-header">
+                        <div class="guide-icon">🪟</div>
+                        <h4 class="guide-title">ویندوز</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">دانلود فایل ZIP</span>
+                        </div>
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">استخراج فایل‌ها</span>
+                        </div>
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">اجرای v2rayN.exe</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-header">
+                        <div class="guide-icon">🐧</div>
+                        <h4 class="guide-title">لینوکس</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">دانلود فایل ZIP</span>
+                        </div>
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">استخراج فایل‌ها</span>
+                        </div>
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">تنظیم مجوز و اجرا</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="guide-header">
+                        <div class="guide-icon">🍎</div>
+                        <h4 class="guide-title">مک او اس</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">دانلود فایل ZIP</span>
+                        </div>
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">استخراج فایل‌ها</span>
+                        </div>
+                        <div class="guide-step">
+                            <span class="step-check">✓</span>
+                            <span class="step-text">اجرای برنامه</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container mx-auto px-6">
+            <p class="text-lg font-medium mb-2">🔄 دریافت خودکار از مخزن رسمی GitHub</p>
+            <p class="text-sm">آخرین بروزرسانی: <span id="last-update" class="font-semibold text-gray-700">-</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // GitHub API endpoints
+        const ANDROID_API = 'https://api.github.com/repos/2dust/v2rayNG/releases/latest';
+        const DESKTOP_API = 'https://api.github.com/repos/2dust/v2rayN/releases/latest';
+
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 بایت';
+            const k = 1024;
+            const sizes = ['بایت', 'کیلوبایت', 'مگابایت', 'گیگابایت'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Format date to Persian
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('fa-IR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Fetch latest release data
+        async function fetchReleaseData(apiUrl) {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Network response was not ok');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return null;
+            }
+        }
+
+        // Update Android app info
+        function updateAndroidInfo(releaseData) {
+            if (!releaseData) return false;
+
+            // Find APK asset
+            const apkAsset = releaseData.assets.find(asset => 
+                asset.name.toLowerCase().includes('.apk')
+            );
+
+            if (!apkAsset) return false;
+
+            document.getElementById('android-version').textContent = releaseData.tag_name;
+            document.getElementById('android-date').textContent = formatDate(releaseData.published_at);
+            document.getElementById('android-size').textContent = formatFileSize(apkAsset.size);
+
+            const downloadBtn = document.getElementById('android-download');
+            downloadBtn.disabled = false;
+            downloadBtn.onclick = () => {
+                window.open(apkAsset.browser_download_url, '_blank');
+            };
+
+            return true;
+        }
+
+        // Update Windows app info
+        function updateWindowsInfo(releaseData) {
+            if (!releaseData) return false;
+
+            // Find Windows ZIP asset
+            const zipAsset = releaseData.assets.find(asset => 
+                asset.name.toLowerCase().includes('win') && 
+                asset.name.toLowerCase().includes('.zip')
+            );
+
+            if (!zipAsset) return false;
+
+            document.getElementById('windows-version').textContent = releaseData.tag_name;
+            document.getElementById('windows-date').textContent = formatDate(releaseData.published_at);
+            document.getElementById('windows-size').textContent = formatFileSize(zipAsset.size);
+
+            const downloadBtn = document.getElementById('windows-download');
+            downloadBtn.disabled = false;
+            downloadBtn.onclick = () => {
+                window.open(zipAsset.browser_download_url, '_blank');
+            };
+
+            return true;
+        }
+
+        // Update Linux app info
+        function updateLinuxInfo(releaseData) {
+            if (!releaseData) return false;
+
+            // Find Linux ZIP asset
+            const zipAsset = releaseData.assets.find(asset => 
+                asset.name.toLowerCase().includes('linux') && 
+                asset.name.toLowerCase().includes('.zip')
+            );
+
+            if (!zipAsset) return false;
+
+            document.getElementById('linux-version').textContent = releaseData.tag_name;
+            document.getElementById('linux-date').textContent = formatDate(releaseData.published_at);
+            document.getElementById('linux-size').textContent = formatFileSize(zipAsset.size);
+
+            const downloadBtn = document.getElementById('linux-download');
+            downloadBtn.disabled = false;
+            downloadBtn.onclick = () => {
+                window.open(zipAsset.browser_download_url, '_blank');
+            };
+
+            return true;
+        }
+
+        // Update macOS app info
+        function updateMacOSInfo(releaseData) {
+            if (!releaseData) return false;
+
+            // Find macOS ZIP asset
+            const zipAsset = releaseData.assets.find(asset => 
+                (asset.name.toLowerCase().includes('macos') || 
+                 asset.name.toLowerCase().includes('mac') ||
+                 asset.name.toLowerCase().includes('osx')) && 
+                asset.name.toLowerCase().includes('.zip')
+            );
+
+            if (!zipAsset) return false;
+
+            document.getElementById('macos-version').textContent = releaseData.tag_name;
+            document.getElementById('macos-date').textContent = formatDate(releaseData.published_at);
+            document.getElementById('macos-size').textContent = formatFileSize(zipAsset.size);
+
+            const downloadBtn = document.getElementById('macos-download');
+            downloadBtn.disabled = false;
+            downloadBtn.onclick = () => {
+                window.open(zipAsset.browser_download_url, '_blank');
+            };
+
+            return true;
+        }
+
+        // Initialize the app
+        async function initializeApp() {
+            const loadingEl = document.getElementById('loading');
+            const appsGridEl = document.getElementById('apps-grid');
+            const errorStateEl = document.getElementById('error-state');
+
+            try {
+                // Fetch both releases simultaneously
+                const [androidData, desktopData] = await Promise.all([
+                    fetchReleaseData(ANDROID_API),
+                    fetchReleaseData(DESKTOP_API)
+                ]);
+
+                // Update UI with fetched data
+                const androidSuccess = updateAndroidInfo(androidData);
+                const windowsSuccess = updateWindowsInfo(desktopData);
+                const linuxSuccess = updateLinuxInfo(desktopData);
+                const macosSuccess = updateMacOSInfo(desktopData);
+
+                if (androidSuccess || windowsSuccess || linuxSuccess || macosSuccess) {
+                    loadingEl.classList.add('hidden');
+                    appsGridEl.classList.remove('hidden');
+                    
+                    // Update last update time
+                    document.getElementById('last-update').textContent = 
+                        new Date().toLocaleString('fa-IR');
+                } else {
+                    throw new Error('No valid releases found');
+                }
+
+            } catch (error) {
+                console.error('Error initializing app:', error);
+                loadingEl.classList.add('hidden');
+                errorStateEl.classList.remove('hidden');
+            }
+        }
+
+        // Typewriter effect
+        function typeWriter() {
+            const text = "برای تمام سیستم‌عامل‌ها";
+            const element = document.getElementById('typewriter-text');
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                }
+            }
+            
+            type();
+        }
+
+        // Theme switching functionality
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const root = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            // Apply saved theme
+            if (savedTheme === 'dark') {
+                root.classList.add('dark-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'حالت تاریک';
+            } else {
+                root.classList.remove('dark-theme');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'حالت روشن';
+            }
+            
+            // Add theme toggle handler
+            themeToggle.addEventListener('click', () => {
+                const isDark = root.classList.contains('dark-theme');
+                
+                if (isDark) {
+                    // Switch to light theme
+                    root.classList.remove('dark-theme');
+                    themeIcon.textContent = '☀️';
+                    themeText.textContent = 'حالت روشن';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    // Switch to dark theme
+                    root.classList.add('dark-theme');
+                    themeIcon.textContent = '🌙';
+                    themeText.textContent = 'حالت تاریک';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
+
+        // Start the app when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTheme();
+            typeWriter();
+            initializeApp();
+        });
+
+        // Auto-refresh every 30 minutes
+        setInterval(initializeApp, 30 * 60 * 1000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f3ce0163179fdc',t:'MTc1NTIwOTY2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
