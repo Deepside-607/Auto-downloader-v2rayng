@@ -452,6 +452,23 @@
             color: #9ca3af;
         }
         
+        /* Typewriter Animation */
+        .typewriter-text {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cursor {
+            animation: blink 1s infinite;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .futuristic-card {
@@ -485,8 +502,8 @@
             <h1 class="hero-title">
                 🚀 دانلود V2Ray
             </h1>
-            <p class="text-3xl md:text-4xl text-gray-300 mb-16 font-light">
-                جدیدترین نسخه‌ها برای تمام سیستم‌عامل‌ها
+            <p class="text-lg md:text-xl text-gray-300 mb-16 font-light typewriter-text">
+                <span id="typewriter-text"></span><span class="cursor">|</span>
             </p>
             
             <div class="flex flex-wrap justify-center items-center mb-20">
@@ -954,14 +971,32 @@
             }
         }
 
+        // Typewriter effect
+        function typeWriter() {
+            const text = "جدیدترین نسخه‌ها برای تمام سیستم‌عامل‌ها";
+            const element = document.getElementById('typewriter-text');
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 80);
+                }
+            }
+            
+            type();
+        }
+
         // Start the app when page loads
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
+            typeWriter();
             initializeApp();
         });
 
         // Auto-refresh every 30 minutes
         setInterval(initializeApp, 30 * 60 * 1000);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f33c8f04ea9705',t:'MTc1NTIwMzcwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f34380962c91f2',t:'MTc1NTIwMzk4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
