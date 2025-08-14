@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -7,16 +6,17 @@
     <title>دانلود v2ray - آخرین نسخه برای همه پلتفرم‌ها</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Vazir, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         body {
-            font-family: 'Vazirmatn', sans-serif;
+            font-family: Vazir, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #000;
             color: #ffffff;
             line-height: 1.6;
@@ -25,120 +25,88 @@
             position: relative;
         }
         
-        /* Animated Background */
+        /* Optimized Background */
         .animated-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%),
-                linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 25%, #0a1a2a 50%, #1a1a0a 75%, #0a0a0a 100%);
+                radial-gradient(ellipse at 20% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #000 0%, #0f0f23 50%, #000 100%);
             animation: bgShift 20s ease-in-out infinite;
         }
         
         @keyframes bgShift {
             0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(60deg); }
+            50% { filter: hue-rotate(180deg); }
         }
         
-        /* Floating Particles */
+        /* Optimized Particles */
         .particles {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
             pointer-events: none;
         }
         
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
             border-radius: 50%;
             animation: float 15s infinite linear;
+            width: 3px;
+            height: 3px;
+            background: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+        }
+        
+        .particle:nth-child(even) {
+            background: rgba(236, 72, 153, 0.6);
+            box-shadow: 0 0 8px rgba(236, 72, 153, 0.4);
         }
         
         @keyframes float {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) scale(0);
                 opacity: 0;
             }
             10% {
                 opacity: 1;
+                transform: translateY(90vh) scale(1);
             }
             90% {
                 opacity: 1;
+                transform: translateY(10vh) scale(1);
             }
             100% {
-                transform: translateY(-100vh) rotate(360deg);
+                transform: translateY(0) scale(0);
                 opacity: 0;
             }
         }
         
-        /* Advanced Glass Card */
+        /* Optimized Glass Card */
         .futuristic-card {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.1) 0%, 
-                rgba(255, 255, 255, 0.05) 50%, 
-                rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(25px);
-            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 24px;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        .futuristic-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(120, 119, 198, 0.3) 0%, 
-                rgba(255, 119, 198, 0.2) 50%, 
-                rgba(120, 219, 255, 0.3) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            border-radius: 22px;
-            z-index: -1;
-        }
-        
-        .futuristic-card:hover::before {
-            opacity: 1;
+            padding: 3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .futuristic-card:hover {
-            transform: translateY(-12px) rotateX(5deg);
-            border-color: rgba(120, 119, 198, 0.5);
+            transform: translateY(-8px);
             box-shadow: 
-                0 25px 60px rgba(0, 0, 0, 0.4),
-                0 0 40px rgba(120, 119, 198, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(139, 92, 246, 0.3);
+            border-color: rgba(139, 92, 246, 0.5);
         }
         
-        /* Holographic Button */
+        /* Optimized Button */
         .holo-btn {
-            background: linear-gradient(135deg, 
-                rgba(120, 119, 198, 0.8) 0%, 
-                rgba(255, 119, 198, 0.8) 50%, 
-                rgba(120, 219, 255, 0.8) 100%);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border: none;
             padding: 1.5rem 2.5rem;
             border-radius: 20px;
             font-weight: 800;
@@ -147,57 +115,19 @@
             transition: all 0.3s ease;
             width: 100%;
             color: white;
-            position: relative;
-            overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 
-                0 8px 25px rgba(120, 119, 198, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        }
-        
-        .holo-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-        
-        .holo-btn:hover:not(:disabled)::before {
-            animation: shimmer 0.6s ease-in-out;
-        }
-        
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-                opacity: 0;
-            }
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
         
         .holo-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 
-                0 15px 40px rgba(120, 119, 198, 0.6),
-                0 0 30px rgba(255, 119, 198, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6);
+            filter: brightness(1.1);
         }
         
         .holo-btn:disabled {
-            background: linear-gradient(135deg, rgba(100, 100, 100, 0.3), rgba(80, 80, 80, 0.3));
+            background: rgba(100, 100, 100, 0.3);
             cursor: not-allowed;
             opacity: 0.5;
             box-shadow: none;
@@ -322,34 +252,23 @@
             50% { opacity: 1; }
         }
         
-        /* Glowing Title */
+        /* Optimized Title */
         .hero-title {
-            font-size: clamp(3rem, 10vw, 10rem);
+            font-size: clamp(3rem, 8vw, 8rem);
             font-weight: 900;
-            background: linear-gradient(135deg, 
-                #ffffff 0%, 
-                #7877c6 25%, 
-                #ff77c6 50%, 
-                #77dbff 75%, 
-                #ffffff 100%);
+            background: linear-gradient(135deg, #ffffff, #8b5cf6, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             line-height: 1.1;
-            text-shadow: 0 0 40px rgba(120, 119, 198, 0.5);
+            text-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
             animation: titleGlow 4s ease-in-out infinite alternate;
         }
         
         @keyframes titleGlow {
-            0% {
-                filter: brightness(1) saturate(1);
-                text-shadow: 0 0 40px rgba(120, 119, 198, 0.5);
-            }
-            100% {
-                filter: brightness(1.2) saturate(1.3);
-                text-shadow: 0 0 60px rgba(120, 119, 198, 0.8);
-            }
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
         }
         
         /* Advanced Feature Pills */
@@ -564,28 +483,28 @@
     <header class="hero-section py-32 relative z-10">
         <div class="container mx-auto px-6 text-center relative z-10">
             <h1 class="hero-title">
-                🚀 v2ray دانلود
+                🚀 دانلود V2Ray
             </h1>
             <p class="text-3xl md:text-4xl text-gray-300 mb-16 font-light">
-                آخرین نسخه برای همه پلتفرم‌ها
+                جدیدترین نسخه‌ها برای تمام سیستم‌عامل‌ها
             </p>
             
             <div class="flex flex-wrap justify-center items-center mb-20">
-                <span class="feature-pill">✅ به‌روزرسانی خودکار</span>
-                <span class="feature-pill">🔄 از GitHub API</span>
-                <span class="feature-pill">🌍 همه پلتفرم‌ها</span>
-                <span class="feature-pill">⚡ دانلود سریع</span>
-                <span class="feature-pill">🔒 امن و مطمئن</span>
+                <span class="feature-pill">🔄 بروزرسانی اتوماتیک</span>
+                <span class="feature-pill">🌐 مستقیم از GitHub</span>
+                <span class="feature-pill">💻 پشتیبانی کامل</span>
+                <span class="feature-pill">⚡ دانلود فوری</span>
+                <span class="feature-pill">🛡️ کاملاً امن</span>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
                 <div class="platform-item">
-                    <div class="text-6xl mb-6">📱</div>
+                    <div class="text-6xl mb-6">🤖</div>
                     <div class="text-xl font-bold text-gray-300">اندروید</div>
                     <div class="text-sm text-gray-500 mt-2">v2rayNG</div>
                 </div>
                 <div class="platform-item">
-                    <div class="text-6xl mb-6">💻</div>
+                    <div class="text-6xl mb-6">🪟</div>
                     <div class="text-xl font-bold text-gray-300">ویندوز</div>
                     <div class="text-sm text-gray-500 mt-2">v2rayN</div>
                 </div>
@@ -608,9 +527,9 @@
         <!-- Loading State -->
         <div id="loading" class="text-center">
             <div class="loading-state inline-block">
-                <div class="text-6xl mb-6">🔄</div>
-                <div>در حال بارگذاری آخرین نسخه‌ها...</div>
-                <div class="text-lg text-gray-400 mt-4">لطفاً صبر کنید</div>
+                <div class="text-6xl mb-6">⏳</div>
+                <div>دریافت جدیدترین نسخه‌ها...</div>
+                <div class="text-lg text-gray-400 mt-4">چند لحظه صبر کنید</div>
             </div>
         </div>
 
@@ -619,7 +538,7 @@
             <!-- v2rayNG for Android -->
             <div class="futuristic-card">
                 <div class="text-center mb-12">
-                    <div class="platform-icon">📱</div>
+                    <div class="platform-icon">🤖</div>
                     <h2 class="text-4xl font-black mb-4">v2rayNG</h2>
                     <p class="text-gray-400 font-semibold text-xl">اندروید</p>
                 </div>
@@ -642,14 +561,14 @@
                 </div>
                 
                 <button id="android-download" class="holo-btn" disabled>
-                    📥 دانلود APK
+                    ⬇️ دانلود APK
                 </button>
             </div>
 
             <!-- v2rayN for Windows -->
             <div class="futuristic-card">
                 <div class="text-center mb-12">
-                    <div class="platform-icon">💻</div>
+                    <div class="platform-icon">🪟</div>
                     <h2 class="text-4xl font-black mb-4">v2rayN</h2>
                     <p class="text-gray-400 font-semibold text-xl">ویندوز</p>
                 </div>
@@ -672,7 +591,7 @@
                 </div>
                 
                 <button id="windows-download" class="holo-btn" disabled>
-                    📥 دانلود ZIP
+                    ⬇️ دانلود ZIP
                 </button>
             </div>
 
@@ -702,7 +621,7 @@
                 </div>
                 
                 <button id="linux-download" class="holo-btn" disabled>
-                    📥 دانلود ZIP
+                    ⬇️ دانلود ZIP
                 </button>
             </div>
 
@@ -732,7 +651,7 @@
                 </div>
                 
                 <button id="macos-download" class="holo-btn" disabled>
-                    📥 دانلود ZIP
+                    ⬇️ دانلود ZIP
                 </button>
             </div>
         </div>
@@ -740,54 +659,54 @@
         <!-- Error State -->
         <div id="error-state" class="text-center hidden">
             <div class="error-state inline-block">
-                <div class="text-6xl mb-6">❌</div>
-                <div>خطا در بارگذاری اطلاعات</div>
-                <div class="text-lg mt-4">لطفاً صفحه را رفرش کنید</div>
+                <div class="text-6xl mb-6">⚠️</div>
+                <div>خطا در دریافت اطلاعات</div>
+                <div class="text-lg mt-4">صفحه را مجدداً بارگذاری کنید</div>
             </div>
         </div>
 
         <!-- Guide Section -->
         <div class="guide-section">
-            <h3 class="section-title">📋 راهنمای نصب</h3>
+            <h3 class="section-title">📖 آموزش نصب و راه‌اندازی</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
                 <div>
                     <div class="flex items-center mb-8 pb-4 border-b border-blue-500/30">
-                        <div class="text-5xl ml-4">📱</div>
+                        <div class="text-5xl ml-4">🤖</div>
                         <h4 class="text-2xl font-black text-blue-400">اندروید</h4>
                     </div>
                     <div class="space-y-4">
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">فایل APK را دانلود کنید</span>
+                            <span class="text-gray-300 font-medium">دانلود فایل APK</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">نصب از منابع نامعلوم را فعال کنید</span>
+                            <span class="text-gray-300 font-medium">فعال‌سازی منابع نامعلوم</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">فایل را نصب کنید</span>
+                            <span class="text-gray-300 font-medium">نصب و اجرای برنامه</span>
                         </div>
                     </div>
                 </div>
                 
                 <div>
                     <div class="flex items-center mb-8 pb-4 border-b border-purple-500/30">
-                        <div class="text-5xl ml-4">💻</div>
+                        <div class="text-5xl ml-4">🪟</div>
                         <h4 class="text-2xl font-black text-purple-400">ویندوز</h4>
                     </div>
                     <div class="space-y-4">
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">فایل ZIP را دانلود کنید</span>
+                            <span class="text-gray-300 font-medium">دانلود فایل ZIP</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">فایل را استخراج کنید</span>
+                            <span class="text-gray-300 font-medium">استخراج فایل‌ها</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">v2rayN.exe را اجرا کنید</span>
+                            <span class="text-gray-300 font-medium">اجرای v2rayN.exe</span>
                         </div>
                     </div>
                 </div>
@@ -800,15 +719,15 @@
                     <div class="space-y-4">
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">فایل ZIP را دانلود کنید</span>
+                            <span class="text-gray-300 font-medium">دانلود فایل ZIP</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">فایل را استخراج کنید</span>
+                            <span class="text-gray-300 font-medium">استخراج فایل‌ها</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">مجوز اجرا بدهید و اجرا کنید</span>
+                            <span class="text-gray-300 font-medium">تنظیم مجوز و اجرا</span>
                         </div>
                     </div>
                 </div>
@@ -821,15 +740,15 @@
                     <div class="space-y-4">
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">فایل ZIP را دانلود کنید</span>
+                            <span class="text-gray-300 font-medium">دانلود فایل ZIP</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">فایل را استخراج کنید</span>
+                            <span class="text-gray-300 font-medium">استخراج فایل‌ها</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
                             <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
-                            <span class="text-gray-300 font-medium">برنامه را اجرا کنید</span>
+                            <span class="text-gray-300 font-medium">اجرای برنامه</span>
                         </div>
                     </div>
                 </div>
@@ -840,16 +759,16 @@
     <!-- Footer -->
     <footer class="footer-section py-16 mt-24 relative z-10">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-400 mb-4 text-xl font-semibold">🔄 این سایت به طور خودکار آخرین نسخه‌ها را از GitHub دریافت می‌کند</p>
-            <p class="text-gray-500 text-lg">آخرین به‌روزرسانی: <span id="last-update" class="font-bold text-white">-</span></p>
+            <p class="text-gray-400 mb-4 text-xl font-semibold">🔄 دریافت خودکار جدیدترین نسخه‌ها از مخزن رسمی GitHub</p>
+            <p class="text-gray-500 text-lg">آخرین بروزرسانی: <span id="last-update" class="font-bold text-white">-</span></p>
         </div>
     </footer>
 
     <script>
-        // Create floating particles
+        // Create optimized particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = 30;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -857,6 +776,7 @@
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 15 + 's';
                 particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
                 particlesContainer.appendChild(particle);
             }
         }
@@ -1043,5 +963,5 @@
         // Auto-refresh every 30 minutes
         setInterval(initializeApp, 30 * 60 * 1000);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f1ec456641558a',t:'MTc1NTE4OTkyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f33c8f04ea9705',t:'MTc1NTIwMzcwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
