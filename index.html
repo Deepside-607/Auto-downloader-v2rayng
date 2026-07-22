@@ -1,511 +1,297 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دانلود v2ray - آخرین نسخه برای همه پلتفرم‌ها</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Vazir, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        body {
-            font-family: Vazir, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #000;
-            color: #ffffff;
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
-        /* Optimized Background */
-        .animated-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background: 
-                radial-gradient(ellipse at 20% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
-                linear-gradient(135deg, #000 0%, #0f0f23 50%, #000 100%);
-            animation: bgShift 20s ease-in-out infinite;
-        }
-        
-        @keyframes bgShift {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(180deg); }
-        }
-        
-        /* Optimized Particles */
-        .particles {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-            width: 3px;
-            height: 3px;
-            background: rgba(139, 92, 246, 0.6);
-            box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
-        }
-        
-        .particle:nth-child(even) {
-            background: rgba(236, 72, 153, 0.6);
-            box-shadow: 0 0 8px rgba(236, 72, 153, 0.4);
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-                transform: translateY(90vh) scale(1);
-            }
-            90% {
-                opacity: 1;
-                transform: translateY(10vh) scale(1);
-            }
-            100% {
-                transform: translateY(0) scale(0);
-                opacity: 0;
-            }
-        }
-        
-        /* Optimized Glass Card */
-        .futuristic-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            padding: 3rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-        
-        .futuristic-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(139, 92, 246, 0.3);
-            border-color: rgba(139, 92, 246, 0.5);
-        }
-        
-        /* Optimized Button */
-        .holo-btn {
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            border: none;
-            padding: 1.5rem 2.5rem;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-        }
-        
-        .holo-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.6);
-            filter: brightness(1.1);
-        }
-        
-        .holo-btn:disabled {
-            background: rgba(100, 100, 100, 0.3);
-            cursor: not-allowed;
-            opacity: 0.5;
-            box-shadow: none;
-        }
-        
-        /* Neon Badge */
-        .neon-badge {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9));
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 800;
-            box-shadow: 
-                0 0 20px rgba(16, 185, 129, 0.5),
-                0 4px 15px rgba(16, 185, 129, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            animation: neonPulse 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes neonPulse {
-            0% {
-                box-shadow: 
-                    0 0 20px rgba(16, 185, 129, 0.5),
-                    0 4px 15px rgba(16, 185, 129, 0.3);
-            }
-            100% {
-                box-shadow: 
-                    0 0 30px rgba(16, 185, 129, 0.8),
-                    0 4px 25px rgba(16, 185, 129, 0.5);
-            }
-        }
-        
-        /* Advanced Info Row */
-        .cyber-info {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.05) 0%, 
-                rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(120, 119, 198, 0.3);
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cyber-info::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(120, 119, 198, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .cyber-info:hover::before {
-            left: 100%;
-        }
-        
-        .cyber-info:hover {
-            border-color: rgba(120, 119, 198, 0.6);
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.08) 0%, 
-                rgba(255, 255, 255, 0.04) 100%);
-            transform: translateX(5px);
-        }
-        
-        /* Glowing Platform Icon */
-        .platform-icon {
-            font-size: 6rem;
-            margin-bottom: 2rem;
-            display: block;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-            animation: iconFloat 3s ease-in-out infinite alternate;
-        }
-        
-        @keyframes iconFloat {
-            0% {
-                transform: translateY(0px);
-                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
-            }
-            100% {
-                transform: translateY(-10px);
-                filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
-            }
-        }
-        
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.9) 0%, 
-                rgba(26, 26, 46, 0.8) 50%, 
-                rgba(0, 0, 0, 0.9) 100%);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid rgba(120, 119, 198, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 70%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(255, 119, 198, 0.2) 0%, transparent 50%);
-            animation: heroShift 15s ease-in-out infinite;
-        }
-        
-        @keyframes heroShift {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        
-        /* Optimized Title */
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, #ffffff, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 3rem;
-            line-height: 1.1;
-            text-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
-            animation: titleGlow 4s ease-in-out infinite alternate;
-        }
-        
-        @keyframes titleGlow {
-            0% { filter: brightness(1); }
-            100% { filter: brightness(1.2); }
-        }
-        
-        /* Advanced Feature Pills */
-        .feature-pill {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.1) 0%, 
-                rgba(255, 255, 255, 0.05) 100%);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(120, 119, 198, 0.3);
-            color: #ffffff;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 700;
-            display: inline-block;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .feature-pill::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .feature-pill:hover::before {
-            left: 100%;
-        }
-        
-        .feature-pill:hover {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.15) 0%, 
-                rgba(255, 255, 255, 0.08) 100%);
-            border-color: rgba(120, 119, 198, 0.6);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(120, 119, 198, 0.3);
-        }
-        
-        /* Platform Grid Items */
-        .platform-item {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.08) 0%, 
-                rgba(255, 255, 255, 0.03) 100%);
-            border: 1px solid rgba(120, 119, 198, 0.2);
-            border-radius: 20px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .platform-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(120, 119, 198, 0.1) 0%, 
-                rgba(255, 119, 198, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .platform-item:hover::before {
-            opacity: 1;
-        }
-        
-        .platform-item:hover {
-            transform: translateY(-8px) scale(1.05);
-            border-color: rgba(120, 119, 198, 0.5);
-            box-shadow: 0 15px 40px rgba(120, 119, 198, 0.3);
-        }
-        
-        /* Loading and Error States */
-        .loading-state {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.1) 0%, 
-                rgba(255, 255, 255, 0.05) 100%);
-            backdrop-filter: blur(25px);
-            border: 2px solid rgba(120, 119, 198, 0.3);
-            border-radius: 24px;
-            padding: 3rem;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: loadingPulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes loadingPulse {
-            0%, 100% {
-                border-color: rgba(120, 119, 198, 0.3);
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            }
-            50% {
-                border-color: rgba(120, 119, 198, 0.6);
-                box-shadow: 0 15px 40px rgba(120, 119, 198, 0.2);
-            }
-        }
-        
-        .error-state {
-            background: linear-gradient(135deg, 
-                rgba(239, 68, 68, 0.2) 0%, 
-                rgba(220, 38, 38, 0.1) 100%);
-            backdrop-filter: blur(25px);
-            border: 2px solid rgba(239, 68, 68, 0.4);
-            color: #fca5a5;
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        
-        /* Guide Section */
-        .guide-section {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.05) 0%, 
-                rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(25px);
-            border: 2px solid rgba(120, 119, 198, 0.2);
-            border-radius: 30px;
-            padding: 4rem;
-            margin-top: 6rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .guide-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, 
-                #7877c6, #ff77c6, #77dbff, #7877c6);
-            background-size: 200% 100%;
-            animation: borderFlow 3s linear infinite;
-        }
-        
-        @keyframes borderFlow {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
-        }
-        
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, 
-                #ffffff 0%, 
-                #7877c6 50%, 
-                #ff77c6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(120, 119, 198, 0.5);
-        }
-        
-        /* Footer */
-        .footer-section {
-            background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.9) 0%, 
-                rgba(26, 26, 46, 0.8) 100%);
-            backdrop-filter: blur(20px);
-            border-top: 2px solid rgba(120, 119, 198, 0.3);
-            color: #9ca3af;
-        }
-        
-        /* Typewriter Animation */
-        .typewriter-text {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .cursor {
-            animation: blink 1s infinite;
-            color: #8b5cf6;
-            font-weight: bold;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .futuristic-card {
-                padding: 2rem;
-            }
-            
-            .guide-section {
-                padding: 2.5rem;
-            }
-            
-            .platform-icon {
-                font-size: 4rem;
-            }
-            
-            .hero-title {
-                font-size: 3rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دانلود V2ray — آخرین نسخه برای همه پلتفرم‌ها</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
+
+    * {
+        margin: 0; padding: 0; box-sizing: border-box;
+        font-family: Vazir, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+        background: #000;
+        color: #fff;
+        line-height: 1.6;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .animated-bg {
+        position: fixed; inset: 0; z-index: -1;
+        background:
+            radial-gradient(ellipse at 20% 80%, rgba(224, 16, 44, 0.25) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 20%, rgba(140, 12, 30, 0.25) 0%, transparent 50%),
+            linear-gradient(135deg, #000 0%, #150505 50%, #000 100%);
+        animation: bgShift 20s ease-in-out infinite;
+    }
+    @keyframes bgShift {
+        0%, 100% { filter: brightness(1); }
+        50% { filter: brightness(1.25); }
+    }
+
+    .particles { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+    .particle {
+        position: absolute; border-radius: 50%;
+        animation: float 15s infinite linear;
+        width: 3px; height: 3px;
+        background: rgba(224, 16, 44, 0.7);
+        box-shadow: 0 0 8px rgba(224, 16, 44, 0.5);
+    }
+    .particle:nth-child(even) {
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh) scale(0); opacity: 0; }
+        10% { opacity: 1; transform: translateY(90vh) scale(1); }
+        90% { opacity: 1; transform: translateY(10vh) scale(1); }
+        100% { transform: translateY(0) scale(0); opacity: 0; }
+    }
+
+    .futuristic-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(224, 16, 44, 0.25);
+        border-radius: 24px;
+        padding: 3rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    .futuristic-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(224, 16, 44, 0.35);
+        border-color: rgba(224, 16, 44, 0.6);
+    }
+
+    .holo-btn {
+        background: linear-gradient(135deg, #e0102c, #8c0c1e);
+        border: none;
+        padding: 1.5rem 2.5rem;
+        border-radius: 20px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 8px 25px rgba(224, 16, 44, 0.45);
+    }
+    .holo-btn:hover:not(:disabled) {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(224, 16, 44, 0.65);
+        filter: brightness(1.15);
+    }
+    .holo-btn:disabled {
+        background: rgba(60, 60, 60, 0.4);
+        cursor: not-allowed;
+        opacity: 0.5;
+        box-shadow: none;
+    }
+
+    .neon-badge {
+        background: linear-gradient(135deg, rgba(224, 16, 44, 0.9), rgba(140, 12, 30, 0.9));
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 800;
+        box-shadow: 0 0 20px rgba(224, 16, 44, 0.5), 0 4px 15px rgba(224, 16, 44, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        animation: neonPulse 2s ease-in-out infinite alternate;
+    }
+    @keyframes neonPulse {
+        0% { box-shadow: 0 0 20px rgba(224, 16, 44, 0.5), 0 4px 15px rgba(224, 16, 44, 0.3); }
+        100% { box-shadow: 0 0 30px rgba(224, 16, 44, 0.8), 0 4px 25px rgba(224, 16, 44, 0.5); }
+    }
+
+    .cyber-info {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+        border: 1px solid rgba(224, 16, 44, 0.2);
+        border-radius: 16px;
+        padding: 1.5rem;
+        display: flex; justify-content: space-between; align-items: center;
+        transition: all 0.3s ease;
+        position: relative; overflow: hidden;
+    }
+    .cyber-info::before {
+        content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(224, 16, 44, 0.12), transparent);
+        transition: left 0.5s ease;
+    }
+    .cyber-info:hover::before { left: 100%; }
+    .cyber-info:hover {
+        border-color: rgba(224, 16, 44, 0.5);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+        transform: translateX(5px);
+    }
+
+    .platform-icon {
+        font-size: 6rem; margin-bottom: 2rem; display: block;
+        filter: drop-shadow(0 0 20px rgba(224, 16, 44, 0.4));
+        animation: iconFloat 3s ease-in-out infinite alternate;
+    }
+    @keyframes iconFloat {
+        0% { transform: translateY(0px); filter: drop-shadow(0 0 20px rgba(224, 16, 44, 0.4)); }
+        100% { transform: translateY(-10px); filter: drop-shadow(0 0 30px rgba(224, 16, 44, 0.6)); }
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,5,5,0.85) 50%, rgba(0,0,0,0.9) 100%);
+        backdrop-filter: blur(20px);
+        border-bottom: 2px solid rgba(224, 16, 44, 0.3);
+        position: relative; overflow: hidden;
+    }
+    .hero-section::before {
+        content: ''; position: absolute; inset: 0;
+        background:
+            radial-gradient(circle at 30% 70%, rgba(224, 16, 44, 0.25) 0%, transparent 50%),
+            radial-gradient(circle at 70% 30%, rgba(140, 12, 30, 0.25) 0%, transparent 50%);
+        animation: heroShift 15s ease-in-out infinite;
+    }
+    @keyframes heroShift { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+    .hero-title {
+        font-size: clamp(3rem, 8vw, 8rem);
+        font-weight: 900;
+        background: linear-gradient(135deg, #ffffff, #e0102c, #8c0c1e);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        margin-bottom: 3rem; line-height: 1.1;
+        text-shadow: 0 0 40px rgba(224, 16, 44, 0.5);
+        animation: titleGlow 4s ease-in-out infinite alternate;
+    }
+    @keyframes titleGlow { 0% { filter: brightness(1); } 100% { filter: brightness(1.25); } }
+
+    .feature-pill {
+        background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(224, 16, 44, 0.3);
+        color: #fff;
+        padding: 1rem 2rem; border-radius: 50px;
+        font-size: 1rem; font-weight: 700;
+        display: inline-block; margin: 0.5rem;
+        transition: all 0.3s ease;
+        position: relative; overflow: hidden;
+        text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .feature-pill::before {
+        content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(224, 16, 44, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+    .feature-pill:hover::before { left: 100%; }
+    .feature-pill:hover {
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        border-color: rgba(224, 16, 44, 0.7);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(224, 16, 44, 0.35);
+    }
+
+    .platform-item {
+        text-align: center; padding: 2rem;
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+        border: 1px solid rgba(224, 16, 44, 0.2);
+        border-radius: 20px;
+        transition: all 0.4s ease;
+        position: relative; overflow: hidden;
+    }
+    .platform-item::before {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(135deg, rgba(224, 16, 44, 0.12) 0%, rgba(140, 12, 30, 0.12) 100%);
+        opacity: 0; transition: opacity 0.4s ease;
+    }
+    .platform-item:hover::before { opacity: 1; }
+    .platform-item:hover {
+        transform: translateY(-8px) scale(1.05);
+        border-color: rgba(224, 16, 44, 0.6);
+        box-shadow: 0 15px 40px rgba(224, 16, 44, 0.35);
+    }
+
+    .loading-state {
+        background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
+        backdrop-filter: blur(25px);
+        border: 2px solid rgba(224, 16, 44, 0.3);
+        border-radius: 24px; padding: 3rem; text-align: center;
+        font-size: 1.5rem; font-weight: 700;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        animation: loadingPulse 2s ease-in-out infinite;
+    }
+    @keyframes loadingPulse {
+        0%, 100% { border-color: rgba(224, 16, 44, 0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+        50% { border-color: rgba(224, 16, 44, 0.7); box-shadow: 0 15px 40px rgba(224, 16, 44, 0.25); }
+    }
+
+    .error-state {
+        background: linear-gradient(135deg, rgba(224, 16, 44, 0.2) 0%, rgba(140, 12, 30, 0.12) 100%);
+        backdrop-filter: blur(25px);
+        border: 2px solid rgba(224, 16, 44, 0.5);
+        color: #ff8a97;
+        border-radius: 20px; padding: 2.5rem; text-align: center;
+        font-weight: 700; font-size: 1.2rem;
+    }
+
+    .guide-section {
+        background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+        backdrop-filter: blur(25px);
+        border: 2px solid rgba(224, 16, 44, 0.2);
+        border-radius: 30px; padding: 4rem; margin-top: 6rem;
+        position: relative; overflow: hidden;
+    }
+    .guide-section::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        background: linear-gradient(90deg, #e0102c, #8c0c1e, #ff1f3d, #e0102c);
+        background-size: 200% 100%;
+        animation: borderFlow 3s linear infinite;
+    }
+    @keyframes borderFlow { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
+
+    .section-title {
+        font-size: 3.5rem; font-weight: 900; margin-bottom: 3rem; text-align: center;
+        background: linear-gradient(135deg, #ffffff 0%, #e0102c 50%, #8c0c1e 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        text-shadow: 0 0 30px rgba(224, 16, 44, 0.5);
+    }
+
+    .footer-section {
+        background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,5,5,0.85) 100%);
+        backdrop-filter: blur(20px);
+        border-top: 2px solid rgba(224, 16, 44, 0.3);
+        color: #9ca3af;
+    }
+
+    .typewriter-text { position: relative; display: inline-block; }
+    .cursor { animation: blink 1s infinite; color: #e0102c; font-weight: bold; }
+    @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+
+    @media (max-width: 768px) {
+        .futuristic-card { padding: 2rem; }
+        .guide-section { padding: 2.5rem; }
+        .platform-icon { font-size: 4rem; }
+        .hero-title { font-size: 3rem; }
+        .section-title { font-size: 2.2rem; }
+    }
+</style>
 </head>
 <body>
-    <!-- Animated Background -->
     <div class="animated-bg"></div>
-    
-    <!-- Floating Particles -->
     <div class="particles" id="particles"></div>
 
-    <!-- Hero Section -->
     <header class="hero-section py-32 relative z-10">
         <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="hero-title">
-                🚀 دانلود V2Ray
-            </h1>
+            <h1 class="hero-title">🚀 دانلود V2Ray</h1>
             <p class="text-lg md:text-xl text-gray-300 mb-16 font-light typewriter-text">
                 <span id="typewriter-text"></span><span class="cursor">|</span>
             </p>
-            
+
             <div class="flex flex-wrap justify-center items-center mb-20">
                 <span class="feature-pill">🔄 بروزرسانی اتوماتیک</span>
                 <span class="feature-pill">🌐 مستقیم از GitHub</span>
@@ -513,7 +299,7 @@
                 <span class="feature-pill">⚡ دانلود فوری</span>
                 <span class="feature-pill">🛡️ کاملاً امن</span>
             </div>
-            
+
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
                 <div class="platform-item">
                     <div class="text-6xl mb-6">🤖</div>
@@ -539,9 +325,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="container mx-auto px-6 py-24 relative z-10">
-        <!-- Loading State -->
         <div id="loading" class="text-center">
             <div class="loading-state inline-block">
                 <div class="text-6xl mb-6">⏳</div>
@@ -550,130 +334,100 @@
             </div>
         </div>
 
-        <!-- Apps Grid -->
         <div id="apps-grid" class="grid lg:grid-cols-2 xl:grid-cols-4 gap-10 max-w-7xl mx-auto hidden">
-            <!-- v2rayNG for Android -->
             <div class="futuristic-card">
                 <div class="text-center mb-12">
                     <div class="platform-icon">🤖</div>
                     <h2 class="text-4xl font-black mb-4">v2rayNG</h2>
                     <p class="text-gray-400 font-semibold text-xl">اندروید</p>
                 </div>
-                
-                <div id="android-info" class="space-y-5 mb-12">
+                <div class="space-y-5 mb-12">
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">نسخه:</span>
                         <span id="android-version" class="neon-badge">-</span>
                     </div>
-                    
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">تاریخ:</span>
                         <span id="android-date" class="text-gray-400 font-semibold">-</span>
                     </div>
-                    
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">حجم:</span>
                         <span id="android-size" class="text-gray-400 font-semibold">-</span>
                     </div>
                 </div>
-                
-                <button id="android-download" class="holo-btn" disabled>
-                    ⬇️ دانلود APK
-                </button>
+                <button id="android-download" class="holo-btn" disabled>⬇️ دانلود APK</button>
             </div>
 
-            <!-- v2rayN for Windows -->
             <div class="futuristic-card">
                 <div class="text-center mb-12">
                     <div class="platform-icon">🪟</div>
                     <h2 class="text-4xl font-black mb-4">v2rayN</h2>
                     <p class="text-gray-400 font-semibold text-xl">ویندوز</p>
                 </div>
-                
-                <div id="windows-info" class="space-y-5 mb-12">
+                <div class="space-y-5 mb-12">
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">نسخه:</span>
                         <span id="windows-version" class="neon-badge">-</span>
                     </div>
-                    
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">تاریخ:</span>
                         <span id="windows-date" class="text-gray-400 font-semibold">-</span>
                     </div>
-                    
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">حجم:</span>
                         <span id="windows-size" class="text-gray-400 font-semibold">-</span>
                     </div>
                 </div>
-                
-                <button id="windows-download" class="holo-btn" disabled>
-                    ⬇️ دانلود ZIP
-                </button>
+                <button id="windows-download" class="holo-btn" disabled>⬇️ دانلود ZIP</button>
             </div>
 
-            <!-- v2rayN for Linux -->
             <div class="futuristic-card">
                 <div class="text-center mb-12">
                     <div class="platform-icon">🐧</div>
                     <h2 class="text-4xl font-black mb-4">v2rayN</h2>
                     <p class="text-gray-400 font-semibold text-xl">لینوکس</p>
                 </div>
-                
-                <div id="linux-info" class="space-y-5 mb-12">
+                <div class="space-y-5 mb-12">
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">نسخه:</span>
                         <span id="linux-version" class="neon-badge">-</span>
                     </div>
-                    
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">تاریخ:</span>
                         <span id="linux-date" class="text-gray-400 font-semibold">-</span>
                     </div>
-                    
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">حجم:</span>
                         <span id="linux-size" class="text-gray-400 font-semibold">-</span>
                     </div>
                 </div>
-                
-                <button id="linux-download" class="holo-btn" disabled>
-                    ⬇️ دانلود ZIP
-                </button>
+                <button id="linux-download" class="holo-btn" disabled>⬇️ دانلود ZIP</button>
             </div>
 
-            <!-- v2rayN for macOS -->
             <div class="futuristic-card">
                 <div class="text-center mb-12">
                     <div class="platform-icon">🍎</div>
                     <h2 class="text-4xl font-black mb-4">v2rayN</h2>
                     <p class="text-gray-400 font-semibold text-xl">مک او اس</p>
                 </div>
-                
-                <div id="macos-info" class="space-y-5 mb-12">
+                <div class="space-y-5 mb-12">
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">نسخه:</span>
                         <span id="macos-version" class="neon-badge">-</span>
                     </div>
-                    
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">تاریخ:</span>
                         <span id="macos-date" class="text-gray-400 font-semibold">-</span>
                     </div>
-                    
                     <div class="cyber-info">
                         <span class="font-bold text-gray-300 text-lg">حجم:</span>
                         <span id="macos-size" class="text-gray-400 font-semibold">-</span>
                     </div>
                 </div>
-                
-                <button id="macos-download" class="holo-btn" disabled>
-                    ⬇️ دانلود ZIP
-                </button>
+                <button id="macos-download" class="holo-btn" disabled>⬇️ دانلود ZIP</button>
             </div>
         </div>
 
-        <!-- Error State -->
         <div id="error-state" class="text-center hidden">
             <div class="error-state inline-block">
                 <div class="text-6xl mb-6">⚠️</div>
@@ -682,89 +436,88 @@
             </div>
         </div>
 
-        <!-- Guide Section -->
         <div class="guide-section">
             <h3 class="section-title">📖 آموزش نصب و راه‌اندازی</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
                 <div>
-                    <div class="flex items-center mb-8 pb-4 border-b border-blue-500/30">
+                    <div class="flex items-center mb-8 pb-4 border-b border-red-500/30">
                         <div class="text-5xl ml-4">🤖</div>
-                        <h4 class="text-2xl font-black text-blue-400">اندروید</h4>
+                        <h4 class="text-2xl font-black text-red-400">اندروید</h4>
                     </div>
                     <div class="space-y-4">
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">دانلود فایل APK</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">فعال‌سازی منابع نامعلوم</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">نصب و اجرای برنامه</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
-                    <div class="flex items-center mb-8 pb-4 border-b border-purple-500/30">
+                    <div class="flex items-center mb-8 pb-4 border-b border-red-500/30">
                         <div class="text-5xl ml-4">🪟</div>
-                        <h4 class="text-2xl font-black text-purple-400">ویندوز</h4>
+                        <h4 class="text-2xl font-black text-red-400">ویندوز</h4>
                     </div>
                     <div class="space-y-4">
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">دانلود فایل ZIP</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">استخراج فایل‌ها</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">اجرای v2rayN.exe</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
-                    <div class="flex items-center mb-8 pb-4 border-b border-green-500/30">
+                    <div class="flex items-center mb-8 pb-4 border-b border-red-500/30">
                         <div class="text-5xl ml-4">🐧</div>
-                        <h4 class="text-2xl font-black text-green-400">لینوکس</h4>
+                        <h4 class="text-2xl font-black text-red-400">لینوکس</h4>
                     </div>
                     <div class="space-y-4">
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">دانلود فایل ZIP</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">استخراج فایل‌ها</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">تنظیم مجوز و اجرا</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
-                    <div class="flex items-center mb-8 pb-4 border-b border-gray-500/30">
+                    <div class="flex items-center mb-8 pb-4 border-b border-red-500/30">
                         <div class="text-5xl ml-4">🍎</div>
-                        <h4 class="text-2xl font-black text-gray-400">مک او اس</h4>
+                        <h4 class="text-2xl font-black text-red-400">مک او اس</h4>
                     </div>
                     <div class="space-y-4">
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">دانلود فایل ZIP</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">استخراج فایل‌ها</span>
                         </div>
                         <div class="flex items-start p-3 rounded-lg hover:bg-white/5 transition-all">
-                            <span class="text-green-400 ml-4 text-xl font-bold">✓</span>
+                            <span class="text-red-400 ml-4 text-xl font-bold">✓</span>
                             <span class="text-gray-300 font-medium">اجرای برنامه</span>
                         </div>
                     </div>
@@ -773,7 +526,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer-section py-16 mt-24 relative z-10">
         <div class="container mx-auto px-6 text-center">
             <p class="text-gray-400 mb-4 text-xl font-semibold">🔄 دریافت خودکار جدیدترین نسخه‌ها از مخزن رسمی GitHub</p>
@@ -782,27 +534,22 @@
     </footer>
 
     <script>
-        // Create optimized particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 30;
-            
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 15 + 's';
                 particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                
                 particlesContainer.appendChild(particle);
             }
         }
-        
-        // GitHub API endpoints
+
         const ANDROID_API = 'https://api.github.com/repos/2dust/v2rayNG/releases/latest';
         const DESKTOP_API = 'https://api.github.com/repos/2dust/v2rayN/releases/latest';
 
-        // Format file size
         function formatFileSize(bytes) {
             if (bytes === 0) return '0 بایت';
             const k = 1024;
@@ -811,17 +558,11 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
-        // Format date to Persian
         function formatDate(dateString) {
             const date = new Date(dateString);
-            return date.toLocaleDateString('fa-IR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+            return date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long', day: 'numeric' });
         }
 
-        // Fetch latest release data
         async function fetchReleaseData(apiUrl) {
             try {
                 const response = await fetch(apiUrl);
@@ -833,137 +574,112 @@
             }
         }
 
-        // Update Android app info
+        // Reliable download trigger: uses a real <a download> click instead of
+        // window.open, which some browsers/extensions stall on for large
+        // redirected GitHub asset URLs. Also gives visual feedback so the
+        // button never looks frozen while the browser hands off to its
+        // download manager.
+        function triggerDownload(btn, url, originalLabel) {
+            btn.disabled = true;
+            btn.textContent = '⏳ در حال شروع دانلود...';
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = '';
+            link.rel = 'noopener';
+            link.target = '_self';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            setTimeout(() => {
+                btn.textContent = '✅ دانلود شروع شد — دوباره امتحان کنید';
+                btn.disabled = false;
+            }, 1500);
+
+            setTimeout(() => {
+                btn.textContent = originalLabel;
+            }, 6000);
+        }
+
         function updateAndroidInfo(releaseData) {
-            if (!releaseData) return false;
-
-            // Find APK asset
-            const apkAsset = releaseData.assets.find(asset => 
-                asset.name.toLowerCase().includes('.apk')
-            );
-
+            if (!releaseData || !releaseData.assets) return false;
+            const apkAsset = releaseData.assets.find(a => a.name.toLowerCase().includes('.apk'));
             if (!apkAsset) return false;
-
             document.getElementById('android-version').textContent = releaseData.tag_name;
             document.getElementById('android-date').textContent = formatDate(releaseData.published_at);
             document.getElementById('android-size').textContent = formatFileSize(apkAsset.size);
-
-            const downloadBtn = document.getElementById('android-download');
-            downloadBtn.disabled = false;
-            downloadBtn.onclick = () => {
-                window.open(apkAsset.browser_download_url, '_blank');
-            };
-
+            const btn = document.getElementById('android-download');
+            btn.disabled = false;
+            btn.onclick = () => triggerDownload(btn, apkAsset.browser_download_url, '⬇️ دانلود APK');
             return true;
         }
 
-        // Update Windows app info
         function updateWindowsInfo(releaseData) {
-            if (!releaseData) return false;
-
-            // Find Windows ZIP asset
-            const zipAsset = releaseData.assets.find(asset => 
-                asset.name.toLowerCase().includes('win') && 
-                asset.name.toLowerCase().includes('.zip')
-            );
-
+            if (!releaseData || !releaseData.assets) return false;
+            const zipAsset = releaseData.assets.find(a => a.name.toLowerCase().includes('win') && a.name.toLowerCase().includes('.zip'));
             if (!zipAsset) return false;
-
             document.getElementById('windows-version').textContent = releaseData.tag_name;
             document.getElementById('windows-date').textContent = formatDate(releaseData.published_at);
             document.getElementById('windows-size').textContent = formatFileSize(zipAsset.size);
-
-            const downloadBtn = document.getElementById('windows-download');
-            downloadBtn.disabled = false;
-            downloadBtn.onclick = () => {
-                window.open(zipAsset.browser_download_url, '_blank');
-            };
-
+            const btn = document.getElementById('windows-download');
+            btn.disabled = false;
+            btn.onclick = () => triggerDownload(btn, zipAsset.browser_download_url, '⬇️ دانلود ZIP');
             return true;
         }
 
-        // Update Linux app info
         function updateLinuxInfo(releaseData) {
-            if (!releaseData) return false;
-
-            // Find Linux ZIP asset
-            const zipAsset = releaseData.assets.find(asset => 
-                asset.name.toLowerCase().includes('linux') && 
-                asset.name.toLowerCase().includes('.zip')
-            );
-
+            if (!releaseData || !releaseData.assets) return false;
+            const zipAsset = releaseData.assets.find(a => a.name.toLowerCase().includes('linux') && a.name.toLowerCase().includes('.zip'));
             if (!zipAsset) return false;
-
             document.getElementById('linux-version').textContent = releaseData.tag_name;
             document.getElementById('linux-date').textContent = formatDate(releaseData.published_at);
             document.getElementById('linux-size').textContent = formatFileSize(zipAsset.size);
-
-            const downloadBtn = document.getElementById('linux-download');
-            downloadBtn.disabled = false;
-            downloadBtn.onclick = () => {
-                window.open(zipAsset.browser_download_url, '_blank');
-            };
-
+            const btn = document.getElementById('linux-download');
+            btn.disabled = false;
+            btn.onclick = () => triggerDownload(btn, zipAsset.browser_download_url, '⬇️ دانلود ZIP');
             return true;
         }
 
-        // Update macOS app info
         function updateMacOSInfo(releaseData) {
-            if (!releaseData) return false;
-
-            // Find macOS ZIP asset
-            const zipAsset = releaseData.assets.find(asset => 
-                (asset.name.toLowerCase().includes('macos') || 
-                 asset.name.toLowerCase().includes('mac') ||
-                 asset.name.toLowerCase().includes('osx')) && 
-                asset.name.toLowerCase().includes('.zip')
+            if (!releaseData || !releaseData.assets) return false;
+            const zipAsset = releaseData.assets.find(a =>
+                (a.name.toLowerCase().includes('macos') || a.name.toLowerCase().includes('osx')) &&
+                a.name.toLowerCase().includes('.zip')
             );
-
             if (!zipAsset) return false;
-
             document.getElementById('macos-version').textContent = releaseData.tag_name;
             document.getElementById('macos-date').textContent = formatDate(releaseData.published_at);
             document.getElementById('macos-size').textContent = formatFileSize(zipAsset.size);
-
-            const downloadBtn = document.getElementById('macos-download');
-            downloadBtn.disabled = false;
-            downloadBtn.onclick = () => {
-                window.open(zipAsset.browser_download_url, '_blank');
-            };
-
+            const btn = document.getElementById('macos-download');
+            btn.disabled = false;
+            btn.onclick = () => triggerDownload(btn, zipAsset.browser_download_url, '⬇️ دانلود ZIP');
             return true;
         }
 
-        // Initialize the app
         async function initializeApp() {
             const loadingEl = document.getElementById('loading');
             const appsGridEl = document.getElementById('apps-grid');
             const errorStateEl = document.getElementById('error-state');
 
             try {
-                // Fetch both releases simultaneously
                 const [androidData, desktopData] = await Promise.all([
                     fetchReleaseData(ANDROID_API),
                     fetchReleaseData(DESKTOP_API)
                 ]);
 
-                // Update UI with fetched data
-                const androidSuccess = updateAndroidInfo(androidData);
-                const windowsSuccess = updateWindowsInfo(desktopData);
-                const linuxSuccess = updateLinuxInfo(desktopData);
-                const macosSuccess = updateMacOSInfo(desktopData);
+                const androidOk = updateAndroidInfo(androidData);
+                const windowsOk = updateWindowsInfo(desktopData);
+                const linuxOk = updateLinuxInfo(desktopData);
+                const macosOk = updateMacOSInfo(desktopData);
 
-                if (androidSuccess || windowsSuccess || linuxSuccess || macosSuccess) {
+                if (androidOk || windowsOk || linuxOk || macosOk) {
                     loadingEl.classList.add('hidden');
                     appsGridEl.classList.remove('hidden');
-                    
-                    // Update last update time
-                    document.getElementById('last-update').textContent = 
-                        new Date().toLocaleString('fa-IR');
+                    document.getElementById('last-update').textContent = new Date().toLocaleString('fa-IR');
                 } else {
                     throw new Error('No valid releases found');
                 }
-
             } catch (error) {
                 console.error('Error initializing app:', error);
                 loadingEl.classList.add('hidden');
@@ -971,12 +687,10 @@
             }
         }
 
-        // Typewriter effect
         function typeWriter() {
             const text = "جدیدترین نسخه‌ها برای تمام سیستم‌عامل‌ها";
             const element = document.getElementById('typewriter-text');
             let i = 0;
-            
             function type() {
                 if (i < text.length) {
                     element.textContent += text.charAt(i);
@@ -984,19 +698,16 @@
                     setTimeout(type, 80);
                 }
             }
-            
             type();
         }
 
-        // Start the app when page loads
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             typeWriter();
             initializeApp();
         });
 
-        // Auto-refresh every 30 minutes
         setInterval(initializeApp, 30 * 60 * 1000);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f34380962c91f2',t:'MTc1NTIwMzk4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
