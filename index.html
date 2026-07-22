@@ -576,9 +576,10 @@
 
         // Reliable download trigger: uses a real <a download> click instead of
         // window.open, which some browsers/extensions stall on for large
-        // redirected GitHub asset URLs. Also gives visual feedback so the
-        // button never looks frozen while the browser hands off to its
-        // download manager.
+        // redirected GitHub asset URLs. The actual download is handled by the
+        // browser's own download manager (visible in Chrome's notification
+        // shade on Android) — this function only manages the button's visual
+        // state so it never looks frozen while that happens in the background.
         function triggerDownload(btn, url, originalLabel) {
             btn.disabled = true;
             btn.textContent = '⏳ در حال شروع دانلود...';
@@ -593,13 +594,13 @@
             document.body.removeChild(link);
 
             setTimeout(() => {
-                btn.textContent = '✅ دانلود شروع شد — دوباره امتحان کنید';
+                btn.textContent = '📥 دانلود در پس‌زمینه ادامه دارد — نوار اعلان‌ها را ببینید';
                 btn.disabled = false;
             }, 1500);
 
             setTimeout(() => {
                 btn.textContent = originalLabel;
-            }, 6000);
+            }, 7000);
         }
 
         function updateAndroidInfo(releaseData) {
